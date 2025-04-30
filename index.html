@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DePaul Chatbot</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f6f8;
+    }
+
+    .chat-fab {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    #chatContainer {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      width: 350px;
+      max-height: 500px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    #chatHeader {
+      background-color: #0056b3;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #chatbox {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+
+    .user {
+      background-color: #d0e6ff;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .bot {
+      background-color: #eeeeee;
+      align-self: flex-start;
+      text-align: left;
+    }
+
+    #inputForm {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+
+    #messageInput {
+      flex: 1;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-right: 8px;
+    }
+
+    #sendButton {
+      padding: 8px 12px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Action Button -->
+<button class="chat-fab" onclick="toggleChat()">💬</button>
+
+<!-- Chat Container -->
+<div id="chatContainer">
+  <div id="chatHeader">DePaul Support Bot</div>
+  <div id="chatbox"></div>
+  <form id="inputForm">
+    <input type="text" id="messageInput" placeholder="Type your message..." required />
+    <button type="submit" id="sendButton">Send</button>
+  </form>
+</div>
+
+<script>
+  const chatContainer = document.getElementById('chatContainer');
+  const chatbox = document.getElementById('chatbox');
+  const form = document.getElementById('inputForm');
+  const input = document.getElementById('messageInput');
+  const sender = "student_" + Math.floor(Math.random() * 10000);
+
+  function toggleChat() {
+    chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+  }
+
+  function addMessage(content, senderType) {
+    const msg = document.createElement('div');
+    msg.className = 'message ' + senderType;
+    msg.textContent = content;
+    chatbox.appendChild(msg);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  async function sendMessage(message) {
+    addMessage(message, 'user');
+
+    const response = await fetch('http://localhost:5005/webhooks/rest/webhook', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sender: sender, message: message })
+    });
+
+    const data = await response.json();
+    data.forEach(entry => {
+      if (entry.text) {
+        addMessage(entry.text, 'bot');
+      }
+    });
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const message = input.value;
+    input.value = '';
+    sendMessage(message);
+  });
+</script>
+
+</body>
+</html>

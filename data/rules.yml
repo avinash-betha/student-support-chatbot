@@ -1,0 +1,72 @@
+version: "3.1"
+
+rules:
+- rule: greet and collect student info
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: student_info_form
+    - active_loop: student_info_form
+
+- rule: form submitted
+  condition:
+    - active_loop: student_info_form
+  steps:
+    - action: student_info_form
+    - active_loop: null
+    - action: utter_thank_you
+
+- rule: answer course prerequisites
+  steps:
+    - intent: ask_course_prerequisites
+    - action: utter_course_prerequisites
+
+- rule: answer exam schedule
+  steps:
+    - intent: ask_exam_schedule
+    - action: utter_exam_schedule
+
+- rule: answer library hours
+  steps:
+    - intent: ask_library_hours
+    - action: utter_library_hours
+
+- rule: answer available courses
+  steps:
+    - intent: ask_available_courses
+    - action: utter_available_courses
+
+- rule: answer registration process
+  steps:
+    - intent: ask_registration_process
+    - action: utter_registration_process
+
+- rule: answer professor contact
+  steps:
+    - intent: ask_professor_contact
+    - action: utter_professor_contact
+
+- rule: answer department office
+  steps:
+    - intent: ask_department_office
+    - action: utter_department_office
+
+- rule: answer academic calendar
+  steps:
+    - intent: ask_academic_calendar
+    - action: utter_academic_calendar
+
+- rule: answer tuition payment
+  steps:
+    - intent: ask_tuition_payment
+    - action: utter_tuition_payment
+
+- rule: answer scholarships
+  steps:
+    - intent: ask_scholarships
+    - action: utter_scholarships
+
+- rule: say goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye

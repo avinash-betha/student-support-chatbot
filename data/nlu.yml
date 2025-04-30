@@ -1,0 +1,83 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+
+- intent: provide_info
+  examples: |
+    - My name is Avinash Betha
+    - I am majoring in Data Science
+    - My ID is 2176522
+    - My student email is abeth123@depaul.edu
+
+- intent: ask_course_prerequisites
+  examples: |
+    - What are the prerequisites for the AI course?
+    - Do I need Python for Data Mining?
+    - What should I know before taking ML at DePaul?
+
+- intent: ask_exam_schedule
+  examples: |
+    - When are the final exams?
+    - Exam dates for Winter quarter?
+    - What is the exam schedule for this quarter?
+
+- intent: ask_library_hours
+  examples: |
+    - What are library hours?
+    - When is the library open today?
+    - Tell me library timings
+
+- intent: ask_available_courses
+  examples: |
+    - What courses are available this quarter?
+    - Can you list the courses I can take?
+    - Show me available computer science courses
+
+- intent: ask_registration_process
+  examples: |
+    - How do I register for classes?
+    - What's the registration process?
+    - Where do I register for courses?
+
+- intent: ask_professor_contact
+  examples: |
+    - How can I contact my professor?
+    - I need my professor's email
+    - Where can I find professor details?
+
+- intent: ask_department_office
+  examples: |
+    - Where is the CS department office?
+    - How do I reach the department?
+    - Department contact details please
+
+- intent: ask_academic_calendar
+  examples: |
+    - Where can I see the academic calendar?
+    - What are the quarter start dates?
+    - Show me the DePaul calendar
+
+- intent: ask_tuition_payment
+  examples: |
+    - How do I pay my tuition?
+    - Tuition payment options?
+    - Where do I pay fees?
+
+- intent: ask_scholarships
+  examples: |
+    - Are there scholarships available?
+    - How can I apply for scholarships?
+    - Tell me about DePaul scholarships
+
+- intent: goodbye
+  examples: |
+    - goodbye
+    - bye
+    - see you later
+    - take care

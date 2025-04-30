@@ -1,0 +1,27 @@
+# Ignore Python virtual environment
+venv/
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Rasa artifacts
+.rasa/
+models/
+*.db
+*.json
+*.tar.gz
+*.lock
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment / secret keys
+.env
+*.env
+serviceAccountKey.json
+
+# VSCode settings (optional)
+.vscode/

@@ -1,0 +1,26 @@
+version: "3.1"
+
+stories:
+- story: answer course prerequisites after form
+  steps:
+  - action: utter_thank_you
+  - intent: ask_course_prerequisites
+  - action: utter_course_prerequisites
+
+- story: answer exam schedule after form
+  steps:
+  - action: utter_thank_you
+  - intent: ask_exam_schedule
+  - action: utter_exam_schedule
+
+- story: answer library hours after form
+  steps:
+  - action: utter_thank_you
+  - intent: ask_library_hours
+  - action: utter_library_hours
+
+- story: say goodbye after form
+  steps:
+  - action: utter_thank_you
+  - intent: goodbye
+  - action: utter_goodbye
