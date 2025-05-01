@@ -4,6 +4,12 @@ This is a demo intelligent assistant built using **Rasa** to simulate a student 
 
 ---
 
+NLP-Powered Architecture
+
+This chatbot is built using Rasa, which combines rule-based logic and natural language understanding (NLU). It is capable of classifying intents from student queries, extracting relevant entities (such as name, student ID, major, and email), and managing multi-step conversations using forms and rules.
+
+---
+
 ## Features
 
 - Collects student name, ID, major, and email via form
